@@ -11,13 +11,14 @@
                             <img src="http://image0.flaticon.com/icons/png/512/49/49128.png" style="border-radius:100%;padding: 1px;width: 60%;border:solid 1px #d3e0e9 !important;" class="profile_img_sidebar"/>
                         </a>
                     </div>
+                    <br>
                     @if(Auth::check())
                     <div class="sidebar-nav" role="group">
 
-                      <a href="/leads" role="button"> Patients </a>
-                      <a href="/dashboard" role="button"> Doctors </a>
-                      <a href="/reports" role="button"> Ambulances </a>
-                      <a href="/schools" role="button"> Pharmacies </a>
+                      <a href="/" role="button"> Patients </a>
+                      <a href="/doctor/" role="button"> Doctors </a>
+                      <a href="/ambulance/" role="button"> Ambulances </a>
+                      <a href="/pharmacy/" role="button"> Pharmacies </a>
                     </div>
                     @endif
                 </div>
