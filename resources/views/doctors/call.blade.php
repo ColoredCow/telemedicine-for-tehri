@@ -9,7 +9,7 @@
                             <th>Action</th>
                         </thead>
                         <tr>
-                            <th>Podi Health Center</th>
+                            <th>Dr. G Pant</th>
                             <th>+9891919191</th>
                             <th>Podi</th>
                             <th>
@@ -19,7 +19,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>B. Puram Medical Center</th>
+                            <th>Dr. P Bist</th>
                             <th>+9891919191</th>
                             <th>B. Puram</th>
                             <th>
@@ -29,5 +29,15 @@
                             </th>
                         </tr>
                     </table> 
+
+                    <div class="form-group">
+                            <br>
+                                <button type="submit" class="btn btn-primary">
+                                    Enter Prescription
+                                </button>
+                                &nbsp;&nbsp;&nbsp;
+                            <br>
+
+                    </div>
                 </div>
             </div>
