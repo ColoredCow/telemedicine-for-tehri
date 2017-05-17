@@ -1,0 +1,26 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+.sidebar-nav > a {
+                    text-align: left!important;
+                    display: block!important;
+                    text-decoration: none!important;
+                    border-radius: 5px!important;
+                    color: #4d4d4d!important;
+                    background-image: -webkit-linear-gradient(#fff, 10%, #f5f8fa 90%)!important;
+                        background-image: linear-gradient(#fff, 10%, #f5f8fa 90%) !important;
+    				box-shadow: 0 1px 1px #d3e0e9 !important;
+                    width: 80%!important;
+                    padding: 1em 2em!important;
+                    margin: auto!important;
+                    margin: 1em auto!important;
+
+              }
