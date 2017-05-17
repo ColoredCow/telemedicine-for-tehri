@@ -5,7 +5,7 @@
                     <form class="form-horizontal" role="form" method="GET" action="/home">
 
                         <div class="form-group{{ $errors->has('prescription') ? ' has-error' : '' }}">
-                            <label for="prescription" class="col-md-4 control-label">Enter Presription</label>
+                            <label for="prescription" class="col-md-4 control-label">Enter Presription <br>(on Doctor's behalf)</label>
 
                             <div class="col-md-6">
                                 <textarea id="prescription" class="form-control" name="prescription" value="{{ old('prescription') }}" rows = '15' autofocus></textarea>
@@ -22,7 +22,7 @@
                             <div class="col-md-8 col-md-offset-4">
                             <br>
                                 <button type="button" id="search_pharmacy" class="btn btn-primary">
-                                    Search for Pharmacy
+                                    Send to Pharmacy
                                 </button>
                             </div>
                         </div>
