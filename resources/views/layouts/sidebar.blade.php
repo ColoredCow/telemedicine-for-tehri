@@ -1,7 +1,6 @@
 
 <div class="panel panel-default">
                 <div class="panel-body" style="text-align:center">
-                    <br>
                     <div class="sidebar_user_info center arial_bold">
                         <h3> 555 Operative </h3>
                     </div>

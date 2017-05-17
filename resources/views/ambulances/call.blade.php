@@ -1,4 +1,4 @@
-           <div class="panel panel-default" id="call_ambulance_section">
+           <div class="panel panel-default" id="call_ambulance_section" style="display:none">
                 <div class="panel-heading"> <h3><strong>Call Ambulance</strong></h3></div>
 
                 <div class="panel-body">

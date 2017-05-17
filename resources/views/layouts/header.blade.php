@@ -48,9 +48,10 @@
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="{{ url('/logout') }}">
+                            <a href='#' onclick="document.querySelector('#logout_form').submit();">
                                 LOGOUT
                             </a>
+                            <form action="/logout" id="logout_form" method="POST"></form>
                         </li>
                         @endif
                     </ul>

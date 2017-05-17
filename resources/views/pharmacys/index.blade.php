@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-                       <div class="panel panel-default" id="call_ambulance_section">
-                <div class="panel-heading"> <h3><strong>Get Medicines</strong></h3></div>
+                       <div class="panel panel-default">
+                <div class="panel-heading"> <h3><strong>Registered Pharmacies</strong></h3></div>
 
                 <div class="panel-body">
                     <table class="table" style="font-size:1.2em">

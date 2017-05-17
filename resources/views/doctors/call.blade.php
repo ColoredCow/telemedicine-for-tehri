@@ -1,4 +1,4 @@
-           <div class="panel panel-default" id="call_doctor_section">
+           <div class="panel panel-default" id="call_doctor_section" style="display:none">
                 <div class="panel-heading"> <h3><strong>Call Doctor</strong></h3></div>
                 <div class="panel-body">
                     <table class="table" style="font-size:1.2em">
