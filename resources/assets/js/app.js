@@ -20,3 +20,16 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+
+$('#call_doctor').click(function () {
+	$('#new_patient_section').hide();
+
+	$('#call_doctor_section').show();
+});
+
+$('#call_ambulance').click(function () {
+	$('#new_patient_section').hide();
+
+	$('#call_ambulance_section').show();
+});

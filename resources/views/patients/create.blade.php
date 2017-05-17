@@ -1,4 +1,4 @@
-           <div class="panel panel-default" id="new_patient">
+           <div class="panel panel-default" id="new_patient_section">
                 <div class="panel-heading"> <h3><strong>New Patient</strong></h3></div>
 
                 <div class="panel-body">
