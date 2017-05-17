@@ -14,7 +14,7 @@ class AmbulanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('ambulances.index');
     }
 
     /**

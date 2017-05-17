@@ -15,19 +15,11 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-
-Route::get('/doctor/', function () {
-    return view('doctors.index');
-});
-
-Route::get('/pharmacy/', function () {
-    return view('pharmacys.index');
-});
-
-Route::get('/ambulance/', function () {
-    return view('ambulances.index');
-});
-
 Auth::routes();
+
+Route::resource('doctor', 'DoctorController');
+Route::resource('pharmacy', 'PharmacyController');
+Route::resource('ambulance', 'AmbulanceController');
+Route::resource('patient', 'PatientController');
 
 Route::get('/home', 'HomeController@index')->name('home');

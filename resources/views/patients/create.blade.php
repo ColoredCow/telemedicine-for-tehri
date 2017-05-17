@@ -79,11 +79,11 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                             <br>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" id="call_doctor" class="btn btn-primary">
                                     Call Doctor
                                 </button>
                                 &nbsp;&nbsp;&nbsp;
-                                <button type="submit" class="btn btn-default">
+                                <button type="button" id="call_ambulance" class="btn btn-default">
                                     Call Ambulance
                                 </button>
 
