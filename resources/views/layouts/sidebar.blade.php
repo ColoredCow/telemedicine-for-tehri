@@ -1,8 +1,8 @@
-
+ @if(Auth::check())
 <div class="panel panel-default">
                 <div class="panel-body" style="text-align:center">
                     <div class="sidebar_user_info center arial_bold">
-                        <h3> 555 Operative </h3>
+                        <h3> 555 Operator </h3>
                     </div>
                     <br>
                     <div class="sidebar_menu center">
@@ -11,14 +11,12 @@
                         </a>
                     </div>
                     <br>
-                    @if(Auth::check())
                     <div class="sidebar-nav" role="group">
-
                       <a href="/" role="button"> Patients </a>
                       <a href="/doctor/" role="button"> Doctors </a>
                       <a href="/ambulance/" role="button"> Ambulances </a>
                       <a href="/pharmacy/" role="button"> Pharmacies </a>
                     </div>
-                    @endif
                 </div>
             </div>
+@endif

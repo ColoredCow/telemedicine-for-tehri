@@ -14,7 +14,22 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return view('doctors.index');
+        $doctors = Doctor::all();
+
+        foreach ($doctors as $doctor) {
+            $doctorCategories[$doctor->type][] = $doctor;
+        }
+
+        return view('doctors.index')->with(compact('doctorCategories'));
+    }
+
+    public function setAppToken(Request $request) {
+        $doctor = Doctor::setAppToken($request->input('phone'), $request->input('token'));
+    }
+
+    public function dashboard()
+    {  
+        return view('doctors/dashboard');
     }
 
     /**

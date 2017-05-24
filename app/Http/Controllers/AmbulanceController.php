@@ -14,7 +14,8 @@ class AmbulanceController extends Controller
      */
     public function index()
     {
-        return view('ambulances.index');
+        $ambulances = Ambulance::all();
+        return view('ambulances.index')->with(compact('ambulances'));
     }
 
     /**

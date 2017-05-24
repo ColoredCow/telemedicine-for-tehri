@@ -16,7 +16,7 @@
                     <!-- Branding Image -->
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                    555 ASHA
+                    555
                     </a>
 
 
@@ -25,7 +25,7 @@
 
             <div class="col-sm-3 hidden-xs navbar-header">
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">555 ASHA</a>
+                <a class="navbar-brand" href="{{ url('/') }}">555</a>
             </div>
 
             <div class="col-sm-6 hidden-xs">

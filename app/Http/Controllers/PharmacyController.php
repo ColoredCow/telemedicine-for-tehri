@@ -14,7 +14,8 @@ class PharmacyController extends Controller
      */
     public function index()
     {
-        return view('pharmacys.index');
+        $pharmacys = Pharmacy::all();
+        return view('pharmacys.index')->with(compact('pharmacys'));
     }
 
     /**

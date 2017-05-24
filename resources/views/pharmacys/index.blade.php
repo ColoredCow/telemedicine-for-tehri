@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8">
                        <div class="panel panel-default">
-                <div class="panel-heading"> <h3><strong>Registered Pharmacies</strong></h3></div>
+                <div class="panel-heading"><h3><strong>Registered Pharmacies</strong></h3></div>
 
                 <div class="panel-body">
                     <table class="table" style="font-size:1.2em">
@@ -16,26 +16,16 @@
                             <th>Area</th>
                             <th>Action</th>
                         </thead>
+                        @foreach($pharmacys as $pharmacy)
                         <tr>
-                            <th>Podi Health Center</th>
-                            <th>+9891919191</th>
-                            <th>Podi</th>
+                            <th>{{ $pharmacy->name }}</th>
+                            <th>{{ $pharmacy->phone }}</th>
+                            <th>{{ $pharmacy->area }}</th>
                             <th>
-                                <span class="glyphicon glyphicon-earphone text-success " aria-hidden="true"></span>
-                                &nbsp;&nbsp;&nbsp;
-                                <span class="glyphicon glyphicon-envelope text-info" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-envelope text-info show_success" style="cursor:pointer" aria-hidden="true"></span>
                             </th>
                         </tr>
-                        <tr>
-                            <th>B. Puram Medical Center</th>
-                            <th>+9891919191</th>
-                            <th>B. Puram</th>
-                            <th>
-                                <span class="glyphicon glyphicon-earphone text-success " aria-hidden="true"></span>
-                                &nbsp;&nbsp;&nbsp;
-                                <span class="glyphicon glyphicon-envelope text-info" aria-hidden="true"></span>
-                            </th>
-                        </tr>
+                        @endforeach
                     </table> 
                 </div>
             </div>

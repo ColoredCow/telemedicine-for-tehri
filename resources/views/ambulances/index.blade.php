@@ -16,26 +16,18 @@
                             <th>Area</th>
                             <th>Action</th>
                         </thead>
+                        @foreach($ambulances as $ambulance)
                         <tr>
-                            <th>Podi Health Center</th>
-                            <th>+9891919191</th>
-                            <th>Podi</th>
+                            <th>{{ $ambulance->name }}</th>
+                            <th>{{ $ambulance->phone }}</th>
+                            <th>{{ $ambulance->area }}</th>
                             <th>
                                 <span class="glyphicon glyphicon-earphone text-success " aria-hidden="true"></span>
                                 &nbsp;&nbsp;&nbsp;
                                 <span class="glyphicon glyphicon-envelope text-info" aria-hidden="true"></span>
                             </th>
                         </tr>
-                        <tr>
-                            <th>B. Puram Medical Center</th>
-                            <th>+9891919191</th>
-                            <th>B. Puram</th>
-                            <th>
-                                <span class="glyphicon glyphicon-earphone text-success " aria-hidden="true"></span>
-                                &nbsp;&nbsp;&nbsp;
-                                <span class="glyphicon glyphicon-envelope text-info" aria-hidden="true"></span>
-                            </th>
-                        </tr>
+                        @endforeach
                     </table> 
                 </div>
             </div>

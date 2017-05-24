@@ -12,14 +12,22 @@
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('welcome');
 });
+
+
 
 Auth::routes();
 
 Route::resource('doctor', 'DoctorController');
 Route::resource('pharmacy', 'PharmacyController');
 Route::resource('ambulance', 'AmbulanceController');
+Route::resource('prescription', 'PrescriptionController');
 Route::resource('patient', 'PatientController');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/patient/getbynumber/{phone}', 'PatientController@getByNumber')->name('home');
+Route::post('/setapptoken', 'DoctorController@setAppToken');
+Route::post('/prescription/approval', 'PrescriptionController@approval');
+Route::get('/prescription/getbydoctor/{phone}', 'PrescriptionController@getByDoctor');
+Route::get('/doctorsdashboard', 'DoctorController@dashboard');

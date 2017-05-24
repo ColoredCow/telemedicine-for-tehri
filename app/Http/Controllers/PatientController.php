@@ -27,6 +27,13 @@ class PatientController extends Controller
         //
     }
 
+    public function getByNumber($phone)
+    {
+        $patient = Patient::where('phone', $phone)->first();
+
+        return json_encode($patient);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +42,16 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $patient = Patient::where('phone', $request->input('phone'))->first();
+
+        if($patient != null){
+            return $patient['id'];
+        } 
+        
+        $patient = Patient::create($request->only(['name', 'phone', 'lat', 'long', 'area']));
+
+        return $patient->id;
     }
 
     /**
