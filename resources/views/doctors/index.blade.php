@@ -12,7 +12,7 @@
                         
                         @foreach($doctorCategories as $category => $doctors)
 
-                        <h4 class="text-primary"> <strong> {{ $category }} Doctors</strong></h4>
+                        <h4 class="text-primary"> <strong> {{ $category }}</strong></h4>
                         <table class="table" style="font-size:1.2em">
                             <thead>
                                 <th>Name</th>

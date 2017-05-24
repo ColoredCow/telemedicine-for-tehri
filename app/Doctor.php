@@ -15,7 +15,7 @@ class Doctor extends Model
 
     public static function setAppToken($phone)
     {
-    	return self::where('phone', $phone)
+    	return self::where('phone', $phone) 
           ->update(['app_token' => $token]);
     }
 }

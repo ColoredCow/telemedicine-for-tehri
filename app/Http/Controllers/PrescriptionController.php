@@ -66,12 +66,13 @@ class PrescriptionController extends Controller
 
         if ($prescription == null)
         {
-            return false;
+            return json_encode(['response' => false]);
         } 
 
-        $prescription->approval = $request->input('approval');
+        $prescription->doctor_approval = $request->input('approval');
         $prescription->save();
-        return true;
+        
+        return json_encode(['response' => true]);
     }
 
     /**

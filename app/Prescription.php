@@ -21,6 +21,6 @@ class Prescription extends Model
     	return Doctor::where('doctors.phone', $phone)
             ->leftJoin('prescriptions', 'doctors.id', '=', 'prescriptions.doctor_id')
             ->leftJoin('patients', 'prescriptions.patient_id', '=', 'patients.id')
-            ->get(['patients.name as patient', 'prescriptions.prescription as prescription', 'prescriptions.created_at as date', 'prescriptions.id as prescription_id']);
+            ->get(['patients.name as patient', 'prescriptions.prescription as prescription', 'prescriptions.created_at as date', 'prescriptions.id as prescription_id', 'prescriptions.doctor_approval as doctor_approval']);
     }
 }
