@@ -30,7 +30,7 @@ $('#back_prescription').click(function() {
 $('#call_doctor').click(function() {
 	$('#new_patient_section').hide();
 	newPatient();
-	filterDoctors($('#specialisation').val());
+	filterDoctors($('#specialisation').val(), $('#area').val());
 	$('#call_doctor_section').show();
 });
 
@@ -82,7 +82,28 @@ function newPatient() {
 
 }
 
-$('#search_doctor').click(function(){
+$(document).ready(function(){
+	searchPrescriptions();
+});
+
+$('.ajax_action').click(function(){
+
+	$.ajax({
+		url: $(this).attr('data-url'),
+		cache: false,
+		processData: false,
+		type: 'GET',
+		success: function() {
+			location.reload();
+		}
+	});
+
+})
+
+
+function searchPrescriptions() {
+
+
 
 	if($('#doctor_phone').val() == '') {
 		return;
@@ -105,9 +126,15 @@ $('#search_doctor').click(function(){
 				var listing = '';
 				
 				for (var i = e.prescriptions.length - 1; i >= 0; i--) {
-					var d = new Date(e.prescriptions[i].date);
-					var date = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
-					listing += '<div class="row" style="border-top:1px solid #eee;padding:0.5em 0; margin:0"><div class="col-xs-3">' + e.prescriptions[i].patient + '</div><div class="col-xs-6">' + e.prescriptions[i].prescription + '</div><div class="col-xs-3">' + date + '</div></div>';
+
+					if(e.prescriptions[i].date == null){
+						var date = '';
+					} else {
+						var d = new Date(e.prescriptions[i].date);
+						var date = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+					}
+					
+					listing += '<div class="row" style="border-top:1px solid #eee;padding:0.5em 0; margin:0"><div class="col-xs-3">' + (e.prescriptions[i].patient == null ?'0 Prescriptions': e.prescriptions[i].patient) + '</div><div class="col-xs-6">' + (e.prescriptions[i].prescription == null ? '' : e.prescriptions[i].prescription) + '</div><div class="col-xs-3">' + date + '</div></div>';
 				}
 				
 				$('#prescription_history_list').html(listing);
@@ -121,7 +148,7 @@ $('#search_doctor').click(function(){
 		}
 	});
 
-});
+}
 
 function newPrescription() {
 
@@ -218,18 +245,26 @@ $('.add-medicine').click(function() {
 
 });
 
-function filterDoctors(specialisation) {
-
-	if (specialisation == '') {
-		$('.doctor_item').show();
-		return;
-	}
+function filterDoctors(specialisation, area) {
 
 	$('.doctor_item').hide();
 
-	$('.doctor_item[data-specialisation="' + specialisation + '"]').show();
+	if (specialisation == '' && area == '') {
+		$('.doctor_item').show();
+		return;
+	} else if(specialisation != '' && area != '') {
+		$('.doctor_item[data-specialisation="' + specialisation + '"][data-area="' + area + '"]').show();
+	} else if (area == ''){
+		$('.doctor_item[data-specialisation="' + specialisation + '"]').show();
+	} else {
+		$('.doctor_item[data-area="' + area + '"]').show();
+	}
 
 }
+
+$('#show_all_doctors').click(function () {
+	$('.doctor_item').show();
+});
 
 
 function selectDoctor(id) {

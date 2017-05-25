@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Pharmacy;
+use App\Prescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PharmacyController extends Controller
 {
@@ -16,6 +18,12 @@ class PharmacyController extends Controller
     {
         $pharmacys = Pharmacy::all();
         return view('pharmacys.index')->with(compact('pharmacys'));
+    }
+
+    public function dashboard()
+    {
+        $prescriptions = Prescription::getByPharmacy(Auth::user()->email);
+        return view('pharmacys.dashboard')->with(compact('prescriptions'));
     }
 
     /**

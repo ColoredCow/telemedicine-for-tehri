@@ -1,5 +1,6 @@
            <div class="panel panel-default" id="call_doctor_section" style="display:none">
                 <div class="panel-heading"> <h3><strong>List of Nearby Doctors</strong></h3>
+                <button id="show_all_doctors" class="btn btn-success pull-right" style="margin-top: -3em;margin-right: 5em;">Show All Doctors</button>
                 <button id="back_patients" class="btn btn-danger pull-right" style="margin-top: -3em;">Back</button>
                 </div>
                 <div class="panel-body">

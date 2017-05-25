@@ -7,6 +7,7 @@ use App\DiseaseType;
 use App\Doctor;
 use App\Medicine;
 use App\Pharmacy;
+use App\Prescription;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,20 +31,30 @@ class HomeController extends Controller
     {
         $ambulances = Ambulance::all();
         $medicines = Medicine::all();
-        $doctors = Doctor::all();
+        $doctors = Doctor::orderBy('area')->get();
 
         foreach ($doctors as $doctor) {
             $doctorCategories[$doctor->type][] = $doctor;
         }
 
         $diseaseTypes = DiseaseType::all(['name']);
-        $pharmacys = Pharmacy::all();
-        $specialisationsRaw = Doctor::all(['specialisation']);
-
+        $pharmacys = Pharmacy::orderBy('area')->get();
+        $specialisationsRaw = Doctor::orderBy('area')->get(['specialisation']);
+        $prescriptionsPharmacyDeclined = Prescription::getPharmacyDeclined();
+        $prescriptionsDoctorDeclined = Prescription::getDoctorDeclined();
         foreach ($specialisationsRaw as $specialisation) {
             $specialisations[] = $specialisation->specialisation;
         }
+
+        $areasRaw = Doctor::orderBy('area')->get(['area']);
+
+        foreach ($areasRaw as $area) {
+            $areas[] = $area->area;
+        }
+
         $specialisations = array_unique($specialisations);
-        return view('home')->with(compact('ambulances', 'doctorCategories', 'specialisations', 'diseaseTypes', 'pharmacys', 'medicines'));
+        $areas = array_unique($areas);
+        return view('home')->with(compact('ambulances', 'doctorCategories', 'specialisations', 'diseaseTypes', 'pharmacys', 'medicines', 'areas', 'prescriptionsPharmacyDeclined', 'prescriptionsDoctorDeclined'));
     }
+
 }

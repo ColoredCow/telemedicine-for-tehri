@@ -77,8 +77,12 @@
                             <label for="area" class="col-md-4 control-label">Area</label>
 
                             <div class="col-md-6">
-                                <input id="area" type="text" class="form-control" name="area" value="Chamba" required autofocus >
-
+                                <select name="area" class="form-control" id="area" required autofocus>
+                                <option value="">Select Area</option>
+                                @foreach($areas as $area)
+                                    <option value="{{ $area }}">{{ $area }}</option>
+                                @endforeach
+                                </select>
                                 @if ($errors->has('area'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('area') }}</strong>

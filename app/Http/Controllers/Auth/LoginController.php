@@ -36,4 +36,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function setAppToken(Request $request) {
+        $user = User::where('email', $request->input('phone'))
+            ->update('app_token', $request->input('token'));
+        $user = User::where('email', $request->input('phone'))->first();
+
+        $prescriptions = [];
+
+        if ($user['usertype'] == 'pharmacy') {
+            $prescriptions = Prescription::getByPharmacy($request->input('phone'));
+        } elseif ($user['usertype'] == 'doctor') {
+            $prescriptions = Prescription::getByDoctor($request->input('phone'));
+        }
+
+        if($user != null){
+            return json_encode([
+                'usertype' => $user['usetype'],
+                'prescriptions' =>  $prescriptions ,
+            ]);
+        } else {
+            return json_encode([
+                'usertype' => null,
+                'prescriptions' =>  null ,
+            ]);
+        }
+        
+    }
 }

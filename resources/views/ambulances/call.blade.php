@@ -14,7 +14,6 @@
                             <th>{{ $ambulance->name }}</th>
                             <th>{{ $ambulance->phone }}</th>
                             <th>{{ $ambulance->area }}</th>
-                            <th>Podi</th>
                             <th>
                                 <span class="glyphicon glyphicon-earphone text-success " aria-hidden="true"></span>
                                 &nbsp;&nbsp;&nbsp;

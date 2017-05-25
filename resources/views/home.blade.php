@@ -12,6 +12,7 @@
             @include('ambulances.call')
             @include('pharmacys.prescription')
             @include('pharmacys.nearby')
+            @include('prescriptions.notifications')
         </div>
         <form id="prescription_submit" >
             <input type="hidden" id="submit_patient_id" name="patient_id">

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\Prescription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
@@ -23,13 +25,12 @@ class DoctorController extends Controller
         return view('doctors.index')->with(compact('doctorCategories'));
     }
 
-    public function setAppToken(Request $request) {
-        $doctor = Doctor::setAppToken($request->input('phone'), $request->input('token'));
-    }
-
     public function dashboard()
     {  
-        return view('doctors/dashboard');
+        
+        $prescriptions = Prescription::getByDoctor(Auth::user()->email);
+
+        return view('doctors/dashboard')->with(compact('prescriptions'));
     }
 
     /**

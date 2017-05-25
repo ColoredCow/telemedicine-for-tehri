@@ -79,6 +79,7 @@
                 <div class="links" >
                     <a href="{{ url('/login') }}" style="font-size:1.5em">CALL CENTER</a>
                     <a href="{{ url('/doctorsdashboard') }}" style="font-size:1.5em">Doctor</a>
+                    <a href="{{ url('/pharmacydashboard') }}" style="font-size:1.5em">Pharmacy</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('/login', function(Request $request) {
+	$phone = $request->input('phone');
+	$user = User::where('email', $request->input('phone'))->first();
+	ini_set('always_populate_raw_post_data', '-1');
+	if($user) {
+		return json_encode($user);
+	}
+	
 });
