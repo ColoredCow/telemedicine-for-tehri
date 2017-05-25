@@ -27,9 +27,9 @@ class Prescription extends Model
 
     public static function getByPharmacy($phone)			
     {
-    	return Pharmacy::where('pharmacies.phone', $phone)
-            ->leftJoin('prescriptions', 'pharmacies.id', '=', 'prescriptions.pharmacy_id')
+    	return self::leftJoin('pharmacies', 'prescriptions.pharmacy_id', '=', 'pharmacies.id')
             ->leftJoin('patients', 'prescriptions.patient_id', '=', 'patients.id')
+            ->where('pharmacies.phone', $phone)
             ->get(['patients.name as patient', 'prescriptions.prescription as prescription', 'prescriptions.created_at as date', 'prescriptions.id as prescription_id', 'prescriptions.pharmacy_approval as pharmacy_approval', 'prescriptions.doctor_approval as doctor_approval']);
     }
 
