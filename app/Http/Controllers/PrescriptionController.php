@@ -39,11 +39,10 @@ class PrescriptionController extends Controller
     {
         $prescription = Prescription::create($request->only(['doctor_id', 'pharmacy_id', 'prescription', 'patient_id']));
 
-        $doctor = Doctor::find('doctor_id');
-
+        $doctor = Doctor::find($request->input('doctor_id'));
         if($doctor != null ) {
             if($doctor->app_token != null && $doctor->app_token != ''){
-                sendNotification($doctor->app_token);
+              $this->sendNotification($doctor->app_token);
             }
         }
         
