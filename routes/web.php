@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-	Route::post('/setapptoken', 'Auth/LoginController@setAppToken');
+	Route::post('/setapptoken', 'Auth\LoginController@setAppToken');
 	Route::post('/prescription/approval', 'PrescriptionController@approval');
 	Route::get('/prescription/pharmacyapprove/{id}', 'PrescriptionController@pharmacyApproval');
 	Route::get('/prescription/doctorapprove/{id}', 'PrescriptionController@doctorApproval');
