@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Doctor;
 use App\Prescription;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -38,7 +39,55 @@ class PrescriptionController extends Controller
     {
         $prescription = Prescription::create($request->only(['doctor_id', 'pharmacy_id', 'prescription', 'patient_id']));
 
+        $doctor = Doctor::find('doctor_id');
+
+        if($doctor != null ) {
+            if($doctor->app_token != null && $doctor->app_token != ''){
+                sendNotification($doctor->app_token);
+            }
+        }
+        
         return json_encode($prescription->id ? true : false);
+    }
+
+    public function sendNotification($token) {
+        $body = [
+            "to" => $token,
+            "notification" => [
+                "title"=> "Hey ". 'user',
+                "body"=>  "You have a Prescription to approve",
+                "sound"=> "default",
+                "click_action"=> "fcm.ACTION.HELLO",
+
+            ],
+            "data" => [
+                "title"=> "Hey ". 'user',
+                "body"=>  "You have a Prescription to approve",
+                "click_action"=> "fcm.ACTION.HELLO",
+                "remote"=> true,
+                "fire_time" => time()
+
+            ],
+            "priority"=> "high"
+        ];
+
+        $dataData = json_encode($body, true);
+
+        $headers = [
+            "Authorization"=>"key= AIzaSyCmTzocKPoZtReExMsjUkFMp_7wEPeFwnI",
+            "Content-Type"=>"application/json"
+        ];
+
+        $client = new Client([
+            'base_uri' => "https://fcm.googleapis.com"
+        ]);
+
+        try {
+            $response =  $client->request('POST', '/fcm/send', ['body' => $dataData, 'headers' => $headers]);
+        } catch (\Exception $e) {
+            return "fail";
+        }
+        return $response->getBody()." ff"; 
     }
 
     /**
@@ -71,7 +120,7 @@ class PrescriptionController extends Controller
 
         $prescription->doctor_approval = $request->input('approval');
         $prescription->save();
-        
+
         return json_encode(['response' => true]);
     }
 
