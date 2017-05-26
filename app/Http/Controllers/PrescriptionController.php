@@ -199,4 +199,47 @@ class PrescriptionController extends Controller
         return;
 
     }  
+
+    public function updatePharmacy(Request $request)
+    {
+        $prescription = Prescription::find($request->input('prescription_id'));
+
+        if($prescription != null) {
+            $prescription->pharmacy_id = $request->input('pharmacy_id');
+            $prescription->pharmacy_approval = null;
+            $prescription->save();
+
+            $pharmacy = Pharmacy::find($prescription->pharmacy_id);
+            if($pharmacy != null) {
+                $user = User::where('email' ,$pharmacy->phone)->first(['app_token']);
+                if($user['app_token'] != null && $user['app_token'] != ''){
+                  $this->sendDoctorNotification($user['app_token']);
+                }
+            }
+
+            return 'true';
+        }
+        return 'false';
+    }
+
+    public function editPrescription(Request $request)
+    {
+        $prescription = Prescription::find($request->input('prescription_id'));
+        if($prescription != null) {
+            $prescription->prescription = $request->input('prescription');
+            $prescription->doctor_approval = null;
+            $prescription->save();
+
+            $doctor = Doctor::find($prescription->doctor_id);
+            if($doctor != null) {
+                $user = User::where('email' ,$doctor->phone)->first(['app_token']);
+                if($user['app_token'] != null && $user['app_token'] != ''){
+                  $this->sendDoctorNotification($user['app_token']);
+                }
+            }
+
+            return 'true';
+        }
+        return 'false';
+    }
 }

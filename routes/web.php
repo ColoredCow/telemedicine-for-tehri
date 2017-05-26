@@ -42,3 +42,5 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/prescription/doctordecline/{id}', 'PrescriptionController@doctorDecline');
 	Route::get('/prescription/getbydoctor/{phone}', 'PrescriptionController@getByDoctor');
 	Route::get('/prescription/getbypharmacy/{phone}', 'PrescriptionController@getByPharmacy');
+	Route::get('/prescriptions/updatepharmacy', 'PrescriptionController@updatePharmacy');
+	Route::get('/prescriptions/editprescription', 'PrescriptionController@editPrescription');

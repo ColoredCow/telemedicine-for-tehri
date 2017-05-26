@@ -31848,6 +31848,36 @@ function selectPharmacy(id) {
 	$('#submit_pharmacy_id').val(id);
 }
 
+$('.select_new_pharmacy').click(function () {
+	$('#update_prescription_id').val($(this).attr('data-id'));
+});
+
+$('.edit_prescription').click(function () {
+	$('#update_prescription_id').val($(this).attr('data-id'));
+});
+
+$('.update_pharmacy').click(function () {
+
+	$.ajax({
+		url: '/prescriptions/updatepharmacy?pharmacy_id=' + $(this).attr('data-id') + '&prescription_id=' + $('#update_prescription_id').val(),
+		type: 'GET',
+		success: function success(e) {
+			location.reload();
+		}
+	});
+});
+
+$('#update_prescription_action').click(function () {
+
+	$.ajax({
+		url: '/prescriptions/editprescription?prescription=' + $('#update_prescription').val() + '&prescription_id=' + $('#update_prescription_id').val(),
+		type: 'GET',
+		success: function success(e) {
+			location.reload();
+		}
+	});
+});
+
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
