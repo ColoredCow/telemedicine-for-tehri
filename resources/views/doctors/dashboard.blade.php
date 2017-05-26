@@ -42,19 +42,21 @@
                             <div class="col-xs-2"><strong>Date</strong></div>
                             <div class="col-xs-2"><strong>Actions</strong></div>
                         </div>
-                        <div id="">
+                        
                             @foreach($prescriptions as $prescription)
                                 @if($prescription->doctor_approval == null)
-                                <div class="col-xs-2">{{ $prescription->patient }}</div>
-                                <div class="col-xs-6">{{ $prescription->prescription }}</div>
-                                <div class="col-xs-2">{{  date_format(date_create($prescription->date),"d/m/Y") }}</div>
-                                <div class="col-xs-2">
-                                    <span style="cursor: pointer" data-url="/prescription/doctorapprove/{{ $prescription->prescription_id }}" class="label ajax_action label-success">Approve</span>
-                                    <span style="cursor: pointer" data-url="/prescription/doctordecline/{{ $prescription->prescription_id }}" class="label ajax_action label-danger">Decline</span>
+                                <div class="row">
+                                    <div class="col-xs-2">{{ $prescription->patient }}</div>
+                                    <div class="col-xs-6">{{ $prescription->prescription }}</div>
+                                    <div class="col-xs-2">{{  date_format(date_create($prescription->date),"d/m/Y") }}</div>
+                                    <div class="col-xs-2">
+                                        <span style="cursor: pointer" data-url="/prescription/doctorapprove/{{ $prescription->prescription_id }}" class="label ajax_action label-success">Approve</span>
+                                        <span style="cursor: pointer" data-url="/prescription/doctordecline/{{ $prescription->prescription_id }}" class="label ajax_action label-danger">Decline</span>
+                                    </div>
                                 </div>
                                 @endif
                             @endforeach
-                        </div>
+                        
                     </div>
 
                     

@@ -38,8 +38,9 @@
                         <div class="col-xs-2"><strong>Date</strong></div>
                         <div class="col-xs-2"><strong>Actions</strong></div>
                     </div>
-                    <div class="row">
+                    
                         @foreach($prescriptionsDoctorDeclined as $prescription)
+                        <div class="row">
                             <div class="col-xs-2">{{ $prescription->patient }}</div>
                             <div class="col-xs-6">{{ $prescription->prescription }}</div>
                             <div class="col-xs-2">{{  date_format(date_create($prescription->date),"d/m/Y") }}</div>
@@ -47,8 +48,9 @@
                                 <span  data-id='{{ $prescription->prescription_id }}' style="cursor: pointer" class="label edit_prescription label-info">Call Doctor</span>
                                 
                             </div>
+                        </div>
                         @endforeach
-                    </div>
+                    
                 </div>
             </div>
 
