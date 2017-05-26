@@ -1,5 +1,5 @@
 
-                <div class="panel panel-default" id="pharmacies_section">
+           <div class="panel panel-default" id="pending_prescriptions_section">
                 <div class="panel-heading"> <h3><strong>Prescriptions</strong></h3>
                 </div>
 
