@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
+
+    use SendsPushNotification;
+
+
     /**
      * Display a listing of the resource.
      *
@@ -41,9 +45,10 @@ class PrescriptionController extends Controller
         $prescription = Prescription::create($request->only(['doctor_id', 'pharmacy_id', 'prescription', 'patient_id']));
 
         $doctor = Doctor::find($request->input('doctor_id'));
-        if($doctor != null ) {
-            if($doctor->app_token != null && $doctor->app_token != ''){
-              $this->sendNotification($doctor->app_token);
+        if($doctor != null) {
+            $user = User::where('email' ,$doctor->phone)->first(['app_token']);
+            if($user['app_token'] != null && $user['app_token'] != ''){
+              $this->sendDoctorNotification($user['app_token']);
             }
         }
         
@@ -167,6 +172,17 @@ class PrescriptionController extends Controller
 
         $prescription->doctor_approval = 1;
         $prescription->save();
+
+        sendDoctorNotification
+
+        $pharmacy = Pharmacy::find($prescription->pharmacy_id);
+        if($pharmacy != null) {
+            $user = User::where('email' ,$pharmacy->phone)->first(['app_token']);
+            if($user['app_token'] != null && $user['app_token'] != ''){
+              $this->sendDoctorNotification($user['app_token']);
+            }
+        }
+        
 
         return;
 

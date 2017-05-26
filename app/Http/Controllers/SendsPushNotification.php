@@ -1,7 +1,11 @@
+<?php
+
+namespace App\Http\Controllers;
+
 trait SendsPushNotification {
 	
 	
-	    public function sendNotification($token) {
+	    public function sendDoctorNotification($token) {
         $body = [
             "to" => $token,
             "notification" => [
