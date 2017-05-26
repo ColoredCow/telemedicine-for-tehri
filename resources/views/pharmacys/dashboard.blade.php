@@ -50,6 +50,7 @@
                                     <span style="cursor: pointer" data-url="/prescription/pharmacyapprove/{{ $prescription->prescription_id }}" class="label ajax_action label-success">Accept</span>
                                     <span style="cursor: pointer" data-url="/prescription/pharmacydecline/{{ $prescription->prescription_id }}" class="label ajax_action label-danger">Deny</span>
                                 </div>
+                                <hr>
                                 </div>
                                 @endif
                             @endforeach
