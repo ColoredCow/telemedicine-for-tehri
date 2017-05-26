@@ -53,8 +53,9 @@
                                         <span style="cursor: pointer" data-url="/prescription/doctorapprove/{{ $prescription->prescription_id }}" class="label ajax_action label-success">Approve</span>
                                         <span style="cursor: pointer" data-url="/prescription/doctordecline/{{ $prescription->prescription_id }}" class="label ajax_action label-danger">Decline</span>
                                     </div>
-                                    <hr>
+                                <hr>
                                 </div>
+
                                 @endif
                             @endforeach
                         

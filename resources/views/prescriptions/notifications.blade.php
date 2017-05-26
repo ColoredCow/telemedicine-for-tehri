@@ -24,8 +24,9 @@
                             <div class="col-xs-2">
                                 <span style="cursor: pointer" data-id='{{ $prescription->prescription_id }}' class="label select_pharmacy label-info">Select Pharmacy</span>
                             </div>
-                           </div>
                             <hr>
+                           </div>
+                            
                         @endforeach
                     
                     <div class="row">
