@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Doctor;
 use App\Pharmacy;
 use App\Prescription;
+use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -170,11 +171,7 @@ class PrescriptionController extends Controller
             return;
         }
 
-        $prescription->doctor_approval = 1;
-        $prescription->save();
-
-        sendDoctorNotification
-
+        $prescription->doctor_approval = 1;	$prescription->save();
         $pharmacy = Pharmacy::find($prescription->pharmacy_id);
         if($pharmacy != null) {
             $user = User::where('email' ,$pharmacy->phone)->first(['app_token']);

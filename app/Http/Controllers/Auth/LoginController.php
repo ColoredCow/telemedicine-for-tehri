@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\User;
 class LoginController extends Controller
 {
     /*
@@ -38,29 +38,11 @@ class LoginController extends Controller
     }
 
     public function setAppToken(Request $request) {
-        $user = User::where('email', $request->input('phone'))
-            ->update('app_token', $request->input('token'));
         $user = User::where('email', $request->input('phone'))->first();
+        $user->app_token = $request->input('token');
+        $user->save();
 
-        $prescriptions = [];
-
-        if ($user['usertype'] == 'pharmacy') {
-            $prescriptions = Prescription::getByPharmacy($request->input('phone'));
-        } elseif ($user['usertype'] == 'doctor') {
-            $prescriptions = Prescription::getByDoctor($request->input('phone'));
-        }
-
-        if($user != null){
-            return json_encode([
-                'usertype' => $user['usetype'],
-                'prescriptions' =>  $prescriptions ,
-            ]);
-        } else {
-            return json_encode([
-                'usertype' => null,
-                'prescriptions' =>  null ,
-            ]);
-        }
+        return json_encode(['success' => true], true);
         
     }
 }
