@@ -45,11 +45,11 @@ class PatientController extends Controller
 
         $patient = Patient::where('phone', $request->input('phone'))->first();
 
-        if($patient != null){
+        if ($patient != null) {
             return $patient['id'];
-        } 
-        
-        $patient = Patient::create($request->only(['name', 'phone', 'lat', 'long', 'area']));
+        }
+
+        $patient = Patient::create($request->only(['name', 'phone', 'address', 'lat', 'long', 'area']));
 
         return $patient->id;
     }
