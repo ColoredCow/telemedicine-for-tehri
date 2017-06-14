@@ -11,12 +11,11 @@
         <!-- Scripts -->
         <script>
         window.Laravel = <?php echo json_encode([
-        'csrfToken' => csrf_token(),
-        ]); ?>
+    'csrfToken' => csrf_token(),
+]); ?>
 
         </script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      
+
         @yield('imports')
     </head>
     <body>
@@ -33,7 +32,7 @@
                     </div>
                 </div>
            </div>
-           
+
            @include('layouts.footer')
 
         </div>
@@ -42,6 +41,6 @@
 <!--         <script src="/js/app.js"></script> -->
 
             <script src="{{ mix('/js/app.js') }}"></script>
-     
+
     </body>
 </html>

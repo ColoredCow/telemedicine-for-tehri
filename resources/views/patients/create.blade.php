@@ -1,11 +1,11 @@
            <div class="panel panel-default" id="new_patient_section">
-                <div class="panel-heading"> 
+                <div class="panel-heading">
                 <h3><strong>New Patient</strong></h3> <button id="see_history_action" class="btn btn-info pull-right" style="margin-top: -3em;display:none;" data-toggle="modal" data-target="#gridSystemModal">See History</button>
                 </div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" name='new_patient' role="form" method="POST" action="/new_patient;">
-                        
+
                         <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">Phone</label>
 
@@ -15,6 +15,20 @@
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('father_name') ? ' has-error' : '' }}">
+                            <label for="father_name" class="col-md-4 control-label">Father Name</label>
+
+                            <div class="col-md-6">
+                                <input id="father_name" type="text" class="form-control" name="father_name" value="{{ old('father_name') }}" autofocus>
+
+                                @if ($errors->has('father_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('father_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -35,6 +49,26 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                            <label for="sex" class="col-md-4 control-label">Gender</label>
+
+                            <div class="col-md-6">
+
+                                <label class="radio-inline">
+                                  <input type="radio" value="male" name="sex">Male
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" value="female" name="sex">Female
+                                </label>
+
+                                @if ($errors->has('sex'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('sex') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label for="address" class="col-md-4 control-label">Address</label>
 
@@ -50,11 +84,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('disease_type') ? ' has-error' : '' }}">
-                            <label for="disease_type" class="col-md-4 control-label">Disease Type</label>
+                            <label for="disease_type" class="col-md-4 control-label">Symptoms</label>
 
                             <div class="col-md-6">
-                                <select name="disease_type" class="form-control" id="disease_type" required autofocus>
-                                    <option value="">Select Disease Type</option>
+                                <select name="disease_type" class="form-control" id="disease_type" required autofocus multiple="multiple">
                                     @foreach($diseaseTypes as $diseaseType)
                                         <option value="{{ $diseaseType->name }}">{{ $diseaseType->name }}</option>
                                     @endforeach

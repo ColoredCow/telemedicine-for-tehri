@@ -31625,6 +31625,7 @@ $('#back_prescription').click(function () {
 
 $('#call_doctor').click(function () {
 	$('#new_patient_section').hide();
+	$('#pending_prescriptions_section').hide();
 	newPatient();
 	filterDoctors($('#specialisation').val(), $('#area').val());
 	$('#call_doctor_section').show();
@@ -31632,6 +31633,7 @@ $('#call_doctor').click(function () {
 
 $('#call_ambulance').click(function () {
 	$('#new_patient_section').hide();
+	$('#pending_prescriptions_section').hide();
 
 	$('#call_ambulance_section').show();
 });
