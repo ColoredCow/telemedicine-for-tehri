@@ -49,7 +49,7 @@ class PatientController extends Controller
             return $patient['id'];
         }
 
-        $patient = Patient::create($request->only(['name', 'phone', 'address', 'lat', 'long', 'area']));
+        $patient = Patient::create($request->only(['name', 'phone', 'address', 'lat', 'long', 'area', 'age', 'sex', 'father_name']));
 
         return $patient->id;
     }
