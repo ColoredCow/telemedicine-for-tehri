@@ -5,7 +5,24 @@
 
                 <div class="panel-body">
                     <h4 class="text-info">Medication</h4>
-                    <div class="table-meds" style="margin-bottom:3em; height: 15em;overflow-y: scroll;    border-radius: 3px;border: 1px solid #eee;">
+                    <div class="form-group{{ $errors->has('prescription') ? ' has-error' : '' }}">
+                            <label for="prescription" class="col-md-4 control-label">Search Medicine</label>
+
+                            <div class="col-md-6">
+                                <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" autofocus>
+                                <hr>
+
+                                @if ($errors->has('prescription'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('prescription') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                    <div class="table-meds col-md-4"></div>
+                    <div class="table-meds col-md-6">
+                        <div class="table-meds" style="margin-bottom:3em; height: 15em;overflow-y: scroll;    border-radius: 3px;border: 1px solid #eee;">
                         <table class="table">
                             <thead>
                                 <th>Name</th>
@@ -21,8 +38,12 @@
                             @endforeach
                         </table>
                     </div>
+                    </div>
+
 
                     <form class="form-horizontal" role="form" method="GET" action="/home">
+
+
 
                         <div class="form-group{{ $errors->has('prescription') ? ' has-error' : '' }}">
                             <label for="prescription" class="col-md-4 control-label">Enter Prescription <br>(on Doctor's behalf)</label>
