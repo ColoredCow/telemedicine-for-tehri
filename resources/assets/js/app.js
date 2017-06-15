@@ -65,6 +65,30 @@ $('.select_pharmacy').click(function() {
 	newPrescription();
 });
 
+$('#search_text').keyup(function () { 
+	let toSearch = $(this).val();
+
+	if(toSearch) {
+		$('.medicine_row').hide();
+	} else {
+		$('.medicine_row').show();
+		return;
+	}
+	
+
+	$('.medicine_row').each(function() {
+		let name = $(this).attr('data-name');
+
+		console.log(name, toSearch);
+		//$(this).show();
+
+		if(name.toLowerCase().indexOf(toSearch.toLowerCase()) > 0) {
+			$(this).show();
+		}
+
+	});
+});
+
 
 function newPatient() {
 

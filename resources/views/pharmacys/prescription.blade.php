@@ -9,7 +9,7 @@
                             <label for="prescription" class="col-md-4 control-label">Search Medicine</label>
 
                             <div class="col-md-6">
-                                <input id="age" type="text" class="form-control" name="age" value="{{ old('age') }}" autofocus>
+                                <input id="search_text" type="text" class="form-control" name="search_text" value="{{ old('age') }}" autofocus>
                                 <hr>
 
                                 @if ($errors->has('prescription'))
@@ -30,7 +30,7 @@
                                 <th></th>
                             </thead>
                             @foreach($medicines as $medicine)
-                            <tr>
+                            <tr class = "medicine_row" data-name = "{{ $medicine->name }}">
                                 <th>{{ $medicine->name }}</th>
                                 <th>{{ $medicine->type }}</th>
                                 <th><span class="glyphicon glyphicon-plus text-info add-medicine" area-hidden="true" data-name="{{ $medicine->name }}" data-type="{{ $medicine->type }}"></span></th>
