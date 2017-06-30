@@ -56,4 +56,11 @@ $prescriptionsRaw = Doctor::where('doctors.phone', $phone)
             ->leftJoin('patients', 'prescriptions.patient_id', '=', 'patients.id')
             ->get(['patients.name as patient', 'doctors.name as doctor', 'doctors.name as phone', 'prescriptions.prescription as prescription', 'prescriptions.created_at as date', 'prescriptions.id as prescription_id', 'prescriptions.pharmacy_approval as pharmacy_approval', 'prescriptions.doctor_approval as doctor_approval']);
     }
+
+    public static function getPatientDetails()
+    {   
+        return self::leftJoin('patients', 'prescriptions.patient_id', '=', 'patients.id')
+            ->orderBy('prescriptions.created_at', 'desc')
+            ->get(['patients.name as patient', 'patients.phone as phone', 'prescriptions.created_at as date', 'prescriptions.id as prescription_id', 'prescriptions.pharmacy_approval as pharmacy_approval', 'prescriptions.doctor_approval as doctor_approval']);
+    }
 }

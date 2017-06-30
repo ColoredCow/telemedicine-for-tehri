@@ -26,7 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('ambulance', 'AmbulanceController');
 	Route::resource('prescription', 'PrescriptionController');
 	Route::resource('patient', 'PatientController');
-
+	Route::resource('disease', 'PatientController');
+	
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/patient/getbynumber/{phone}', 'PatientController@getByNumber')->name('home');
 	Route::get('/doctorsdashboard', 'DoctorController@dashboard');
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
+	Route::get('/report', 'PrescriptionController@report');
 	Route::post('/setapptoken', 'Auth\LoginController@setAppToken');
 	Route::post('/prescription/approval', 'PrescriptionController@approval');
 	Route::get('/prescription/pharmacyapprove/{id}', 'PrescriptionController@pharmacyApproval');

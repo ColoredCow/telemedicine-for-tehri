@@ -98,7 +98,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <hr>
                         <div class="form-group{{ $errors->has('disease_type') ? ' has-error' : '' }}">
                             <label for="disease_type" class="col-md-4 control-label">Symptoms</label>
 
@@ -117,6 +117,20 @@
                             </div>
                         </div>
 
+<!--edited-->           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="disease_types" class="col-md-4 control-label">Other Symptoms</label>
+
+                            <div class="col-md-6">
+                                <input id="other_disease" type="text" class="form-control" name="other_disease" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
                         <div class="form-group{{ $errors->has('specialisation') ? ' has-error' : '' }}">
                             <label for="specialisation" class="col-md-4 control-label">Specialisation</label>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use App\DiseaseType;
 
 class PatientController extends Controller
 {
@@ -42,6 +43,12 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
+         $disease = DiseaseType::where('name', $request->input('other_disease'))->first();
+
+        if(!$disease){
+            $disease = DiseaseType::create(['name'=>$request->other_disease]);
+        }
+        
 
         $patient = Patient::where('phone', $request->input('phone'))->first();
 

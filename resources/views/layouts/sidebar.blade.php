@@ -14,6 +14,7 @@
                     <div class="sidebar-nav" role="group">
                     @if(Auth::user()->usertype == 'operator')
                       <a href="/home" role="button"> Operator Dashboard </a>
+                      <a href="/report/" role="button"> Reports</a> 
                       <a href="/doctor/" role="button"> Doctors </a>
                       <a href="/ambulance/" role="button"> Ambulances </a>
                       <a href="/pharmacy/" role="button"> Pharmacies </a>
