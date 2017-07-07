@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\Patient;
 use App\Pharmacy;
 use App\Prescription;
 use App\User;
-use App\Patient;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -242,55 +242,51 @@ class PrescriptionController extends Controller
 
     public function report(Request $request)
     {
-        $prescribedpatients= Prescription::getPatientDetails();
-        $delivery=0;
-        $countrow=0;
+        $prescribedpatients = Prescription::getPatientDetails();
+        $delivery = 0;
+        $countrow = 0;
         foreach ($prescribedpatients as $prescribed) {
             $countrow++;
-            if (($prescribed->doctor_approval==null)&&($prescribed->pharmacy_approval==null))
-            {
-            $data[] = [
-                'name' => $prescribed->patient,
-                'id' => $prescribed->prescription_id,
-                'phone' => $prescribed->phone,
-                'date' => $prescribed->date,
-                'label' => 'info',
-                'indicator' => 'pending doctor approval'
-            ];
-            } else if (($prescribed->doctor_approval==0)&&($prescribed->pharmacy_approval==null))
-            {
-            $data[] = [
-                'name' => $prescribed->patient,
-                'id' => $prescribed->prescription_id,
-                'phone' => $prescribed->phone,
-                'date' => $prescribed->date,
-                'label' => 'danger',
-                'indicator' => 'declined by doctor'
-            ];
-            } else if (($prescribed->doctor_approval==1)&&($prescribed->pharmacy_approval==null))
-            {
-            $data[] = [
-                'name' => $prescribed->patient,
-                'id' => $prescribed->prescription_id,
-                'phone' => $prescribed->phone,
-                'date' => $prescribed->date,
-                'label' => 'warning',
-                'indicator' => 'approved by doctor'
-            ];
-            } else if (($prescribed->doctor_approval==1)&&($prescribed->pharmacy_approval==1))
-            {
-            $data[] = [
-                'name' => $prescribed->patient,
-                'id' => $prescribed->prescription_id,
-                'phone' => $prescribed->phone,
-                'date' => $prescribed->date,
-                'label' => 'success',
-                'indicator' => 'delivered by pharmacy'
-            ];
-            $delivery++;
+            if (($prescribed->doctor_approval == null) && ($prescribed->pharmacy_approval == null)) {
+                $data[] = [
+                    'name' => $prescribed->patient,
+                    'id' => $prescribed->prescription_id,
+                    'phone' => $prescribed->phone,
+                    'date' => $prescribed->date,
+                    'label' => 'danger',
+                    'indicator' => 'pending doctor approval',
+                ];
+            } else if (($prescribed->doctor_approval == 0) && ($prescribed->pharmacy_approval == null)) {
+                $data[] = [
+                    'name' => $prescribed->patient,
+                    'id' => $prescribed->prescription_id,
+                    'phone' => $prescribed->phone,
+                    'date' => $prescribed->date,
+                    'label' => 'warning',
+                    'indicator' => 'declined by doctor',
+                ];
+            } else if (($prescribed->doctor_approval == 1) && ($prescribed->pharmacy_approval == null)) {
+                $data[] = [
+                    'name' => $prescribed->patient,
+                    'id' => $prescribed->prescription_id,
+                    'phone' => $prescribed->phone,
+                    'date' => $prescribed->date,
+                    'label' => 'info',
+                    'indicator' => 'approved by doctor',
+                ];
+            } else if (($prescribed->doctor_approval == 1) && ($prescribed->pharmacy_approval == 1)) {
+                $data[] = [
+                    'name' => $prescribed->patient,
+                    'id' => $prescribed->prescription_id,
+                    'phone' => $prescribed->phone,
+                    'date' => $prescribed->date,
+                    'label' => 'success',
+                    'indicator' => 'delivered by pharmacy',
+                ];
+                $delivery++;
             }
 
         }
-        return view('prescriptions.reports')->with(compact('data','delivery','countrow'));
+        return view('prescriptions.reports')->with(compact('data', 'delivery', 'countrow'));
     }
 }
