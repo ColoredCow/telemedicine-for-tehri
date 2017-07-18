@@ -15,7 +15,17 @@ trait SendsSMSNotification {
         $message .= "Please reply APPROVE or DECLINE";
         TwilioMessaging::send([
           'from' => env('TWILIO_FROM'),
-          'to' => $phone,
+          'to' => '+91' . $phone,
+        ], $message);
+    }
+
+    public function sendSMSNotificationToPharmacy($attr) {
+        $message = "You have a new medication from 555 to deliver to " . $attr['name'] . ". \n\n";
+        $message .= "Prescription:\n". $attr['prescription'] . "\n\n";
+        $message .= "Address:\n". $attr['address'] . "\n";
+        TwilioMessaging::send([
+          'from' => env('TWILIO_FROM'),
+          'to' => '+91' . $attr['phone'],
         ], $message);
     }
 

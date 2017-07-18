@@ -174,10 +174,20 @@ class PrescriptionController extends Controller
         $prescription->save();
         $pharmacy = Pharmacy::find($prescription->pharmacy_id);
         if ($pharmacy != null) {
+
             $user = User::where('email', $pharmacy->phone)->first(['app_token']);
+            $patient = Patient::find($prescription->patient_id);
+
             if ($user['app_token'] != null && $user['app_token'] != '') {
                 $this->sendDoctorNotification($user['app_token']);
             }
+
+            $this->sendSMSNotificationToPharmacy([
+                'prescription' => $prescription->prescription,
+                'phone' => $pharmacy->phone,
+                'address' => $patient->address,
+                'name' => $patient->name
+              ]);
         }
 
         return;
