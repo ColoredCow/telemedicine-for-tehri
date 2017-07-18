@@ -51,7 +51,7 @@ class PrescriptionController extends Controller
             if ($user['app_token'] != null && $user['app_token'] != '') {
                 $this->sendDoctorNotification($user['app_token']);
             }
-            $this->sendSMSNotificationToDoctor($prescription->prescription, $doctor->phone);
+            // $this->sendSMSNotificationToDoctor($prescription->prescription, $doctor->phone);
         }
 
         return json_encode($prescription->id ? true : false);
@@ -101,17 +101,12 @@ class PrescriptionController extends Controller
     public function smsReceived(Request $request) {
         $from = trim($request->input('From'));
         $message = strtolower(trim($request->input('Body')));
-       // echo $message . ' ' . $from; die();
         $from = substr($from, 3);
-//die($from);
         $doctor = Doctor::where('phone', $from)->first(['id']);
-//echo json_encode($doctor);die(); 
-//dd($doctor);
         if(sizeof($doctor) ){
             $prescription = Prescription::where('doctor_id', $doctor['id'])
                 ->whereNull('doctor_approval')
                 ->first();
-//'abcd';
             if($message == 'approve')
             {
                 $this->doctorApproval($prescription['id']);
@@ -207,12 +202,12 @@ class PrescriptionController extends Controller
                 $this->sendDoctorNotification($user['app_token']);
             }
 
-            $this->sendSMSNotificationToPharmacy([
-                'prescription' => $prescription->prescription,
-                'phone' => $pharmacy->phone,
-                'address' => $patient->address,
-                'name' => $patient->name
-              ]);
+            // $this->sendSMSNotificationToPharmacy([
+            //     'prescription' => $prescription->prescription,
+            //     'phone' => $pharmacy->phone,
+            //     'address' => $patient->address,
+            //     'name' => $patient->name
+            //   ]);
         }
 
         return;
