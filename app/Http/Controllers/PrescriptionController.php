@@ -102,12 +102,23 @@ class PrescriptionController extends Controller
         $from = trim($request->input('From'));
         $message = strtolower(trim($request->input('Body')));
         echo $message . ' ' . $from; die();
-        if($message == 'approve')
-        {
-            $this->doctorApproval($id);
-        } elseif ($message == 'decline') {
-            $this->doctorDecline($id);
+        $from = substr($from, 2);
+        $doctor = Doctor::where('phone', $from)->first(['id']);
+
+        if(sizeof($doctor) > 1){
+            $prescription = Prescription::where('doctor_id', doctor->id)
+                ->whereIsNull('doctor_approval')
+                ->first();
+
+            if($message == 'approve')
+            {
+                $this->doctorApproval($prescription['id']);
+            } elseif ($message == 'decline') {
+                $this->doctorDecline($prescription['id']);
+            }
         }
+
+
     }
 
     /**
