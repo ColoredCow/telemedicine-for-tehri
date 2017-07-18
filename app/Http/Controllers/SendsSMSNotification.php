@@ -25,7 +25,7 @@ trait SendsSMSNotification {
         $message .= "Address:\n". $attr['address'] . "\n";
         TwilioMessaging::send([
           'from' => env('TWILIO_FROM'),
-          'to' => '+91' . $attr['phone'],
+          'to' => '+91' . '7838818823',
         ], $message);
     }
 
