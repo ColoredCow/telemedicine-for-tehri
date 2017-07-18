@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('prescription', 'PrescriptionController');
 	Route::resource('patient', 'PatientController');
 	Route::resource('disease', 'PatientController');
-	
+
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/patient/getbynumber/{phone}', 'PatientController@getByNumber')->name('home');
 	Route::get('/doctorsdashboard', 'DoctorController@dashboard');
@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/setapptoken', 'Auth\LoginController@setAppToken');
 	Route::post('/prescription/approval', 'PrescriptionController@approval');
 	Route::get('/prescription/pharmacyapprove/{id}', 'PrescriptionController@pharmacyApproval');
+
+	Route::post('/twilio/sms/response', 'PrescriptionController@smsReceived');
+
 	Route::get('/prescription/doctorapprove/{id}', 'PrescriptionController@doctorApproval');
 	Route::get('/prescription/pharmacydecline/{id}', 'PrescriptionController@pharmacyDecline');
 	Route::get('/prescription/doctordecline/{id}', 'PrescriptionController@doctorDecline');

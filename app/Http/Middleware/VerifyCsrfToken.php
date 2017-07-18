@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         '/logout',
         '/prescription/approval',
-        '/setapptoken'
+        '/setapptoken',
+        '/twilio/sms/response',
     ];
 }

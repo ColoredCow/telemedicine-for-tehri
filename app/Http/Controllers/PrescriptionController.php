@@ -98,6 +98,18 @@ class PrescriptionController extends Controller
         return json_encode(['response' => true]);
     }
 
+    public function smsReceived(Request $request) {
+        $from = trim($request->input('From'));
+        $message = strtolower(trim($request->input('Body')));
+        echo $message . ' ' . $from; die();
+        if($message == 'approve')
+        {
+            $this->doctorApproval($id);
+        } elseif ($message == 'decline') {
+            $this->doctorDecline($id);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
