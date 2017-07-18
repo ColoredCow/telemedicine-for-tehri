@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 
 trait SendsPushNotification {
-	
-	
+
+
 	    public function sendDoctorNotification($token) {
         $body = [
             "to" => $token,
@@ -45,7 +45,7 @@ trait SendsPushNotification {
         } catch (\Exception $e) {
             return "fail";
         }
-        return $response->getBody()." ff"; 
+        return $response->getBody()." ff";
     }
 
 }

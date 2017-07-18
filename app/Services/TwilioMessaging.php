@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\;
+namespace App\Services;
 
 use Exception;
 use Log;
@@ -25,7 +25,10 @@ class TwilioMessaging extends Twilio
 
             $client = parent::getServiceClient();
 
-            $message = $client->account->messages->sendMessage($numbers['from'], $numbers['to'], $message);
+            $message = $client->messages->create($numbers['to'], [
+                'from'  => $numbers['from'],
+                'body' => $message
+              ]);
 
             return $message->sid;
 

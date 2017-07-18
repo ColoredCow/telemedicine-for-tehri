@@ -13,6 +13,7 @@ class PrescriptionController extends Controller
 {
 
     use SendsPushNotification;
+    use SendsSMSNotification;
 
     /**
      * Display a listing of the resource.
@@ -50,6 +51,7 @@ class PrescriptionController extends Controller
             if ($user['app_token'] != null && $user['app_token'] != '') {
                 $this->sendDoctorNotification($user['app_token']);
             }
+            $this->sendSMSNotificationToDoctor($prescription->prescription, $doctor->phone);
         }
 
         return json_encode($prescription->id ? true : false);

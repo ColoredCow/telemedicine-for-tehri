@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\;
+namespace App\Services;
 
-use Services_Twilio;
+use Twilio\Rest\Client;
 
 /**
  * Parent Class for Twilio Service
@@ -52,7 +52,8 @@ class Twilio
     public static function getServiceClient()
     {
 
-        return new Services_Twilio(self::getAccountSID(), self::getAuthToken());
+        return new Client(self::getAccountSID(), self::getAuthToken());
+
 
     }
 
