@@ -101,15 +101,17 @@ class PrescriptionController extends Controller
     public function smsReceived(Request $request) {
         $from = trim($request->input('From'));
         $message = strtolower(trim($request->input('Body')));
-        echo $message . ' ' . $from; die();
-        $from = substr($from, 2);
+       // echo $message . ' ' . $from; die();
+        $from = substr($from, 3);
+//die($from);
         $doctor = Doctor::where('phone', $from)->first(['id']);
-
-        if(sizeof($doctor) > 1){
-            $prescription = Prescription::where('doctor_id', doctor->id)
-                ->whereIsNull('doctor_approval')
+//echo json_encode($doctor);die(); 
+//dd($doctor);
+        if(sizeof($doctor) ){
+            $prescription = Prescription::where('doctor_id', $doctor['id'])
+                ->whereNull('doctor_approval')
                 ->first();
-
+//'abcd';
             if($message == 'approve')
             {
                 $this->doctorApproval($prescription['id']);
