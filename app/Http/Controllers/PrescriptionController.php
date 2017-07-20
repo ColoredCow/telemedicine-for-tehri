@@ -51,7 +51,7 @@ class PrescriptionController extends Controller
             if ($user['app_token'] != null && $user['app_token'] != '') {
                 $this->sendDoctorNotification($user['app_token']);
             }
-            // $this->sendSMSNotificationToDoctor($prescription->prescription, $doctor->phone);
+            $this->sendSMSNotificationToDoctor($prescription->prescription, $doctor->phone);
         }
 
         return json_encode($prescription->id ? true : false);
@@ -202,12 +202,12 @@ class PrescriptionController extends Controller
                 $this->sendDoctorNotification($user['app_token']);
             }
 
-            // $this->sendSMSNotificationToPharmacy([
-            //     'prescription' => $prescription->prescription,
-            //     'phone' => $pharmacy->phone,
-            //     'address' => $patient->address,
-            //     'name' => $patient->name
-            //   ]);
+            $this->sendSMSNotificationToPharmacy([
+                'prescription' => $prescription->prescription,
+                'phone' => $pharmacy->phone,
+                'address' => $patient->address,
+                'name' => $patient->name
+              ]);
         }
 
         return;
